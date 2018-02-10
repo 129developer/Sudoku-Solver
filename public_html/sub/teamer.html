@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+   <style>
+      textarea {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 90%;
+      }
+      body{
+      background-repeat: no-repeat;
+      background-size: cover;
+      }
+      checkbox{
+      color:red
+      }
+	label {
+    	color:#6ebefb;
+    	font-family: Consolas, Baskerville, 'Segoe UI', sans-serif;
+	 }
+input[type=checkbox]:hover {
+    box-shadow:0px 0px 10px #1300ff;
+}
+   </style>
+   <script>
+      function sort(){
+      var names = document.getElementById('names');
+      var namesAry = names.value.split('\n');
+      var teamA = [];
+      var teamB = [];
+      var added = [];
+      function addIN(ary){
+      var rnd = getRandomInt(0, namesAry.length-1);
+      if(added.indexOf(rnd ) == -1){
+      ary.push(namesAry[rnd]);
+      added.push(rnd) return true; } return addIN(ary); } while(added.length < namesAry.length){ if(added.length<namesAry.length){   addIN(teamA);}   if(added.length<namesAry.length){ addIN(teamB);} } document.getElementById('teamA').value = "TEAM A : "+(teamA); document.getElementById('teamB').value = "TEAM B : "+(teamB); } function getRandomInt(min, max) {     return Math.floor(Math.random() * (max - min + 1)) + min; } function playerclick(element){ if(element.checked===true){ var names = document.getElementById('names').value; names.push(element.name); alert(names) document.getElementById('names').value=names; }else{ var finalname=[]; var names = document.getElementById('names').value; for(int i=0;i<names.length;i++){ if(names[i]!==element.name){ finalname.push(element.name); } } document.getElementById('names').value=finalname; } } 
+   </script> 
+   <body background="http://www.mulierchile.com/mobile-background-pictures/mobile-background-pictures-017.jpg">
+      <h1 style="text-align: center;"><span style="color: #95ffa8;"><strong>Numma Team</strong></span></h1>
+      	<input type="checkbox" checked=true name="Aby" onclick="playerclick(this)" value="Bike"/><label>Aby</label>
+ 		<input type="checkbox" onclick="playerclick(this)" checked=true name="Mukil" value="Bike"/><label>Mukil</label>
+		<input type="checkbox" onclick="playerclick(this)" checked=true name="Sandeep" value="Bike"/><label>Sandeep</label>
+		<input type="checkbox" onclick="playerclick(this)" checked=true name="Midhun" value="Bike"/><label>Midhun</label>
+		<input type="checkbox" onclick="playerclick(this)" checked=true name="Mohan" value="Bike"/><label>Mohan</label>
+		<input type="checkbox" onclick="playerclick(this)" checked=true name="Sreejesh" value="Bike"/><label>Sreejesh</label>
+		<input type="checkbox" onclick="playerclick(this)" name="Albin" value="Bike"/><label for="Albin">Albin</label>
+		<input type="checkbox" onclick="playerclick(this)" name="Ashwin" value="Bike"/><label for="Ashwin">Ashwin</label>
+<br> 
+      <div><span style="color: #ff5151;"><b>Enter Names of players in each line</b></span></div>
+      <textarea id="names" cols="20" rows="10"></textarea>
+      <div><input type="button" value="Create Team" onclick="sort()" /></div>
+      <p><span style="color: #ff5151;"><b>Team A</b></span></p>
+      <p><textarea id="teamA" cols="30" rows="4"></textarea></p>
+      <p><span style="color: #ff5151;"><b>Team B</b></span></p>
+      <div><textarea id="teamB" cols="30" rows="4"></textarea></div>
+   </body>
+</html>
