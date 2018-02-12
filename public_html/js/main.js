@@ -4,6 +4,11 @@
  *  Need to find the values of 0                                        *
  *  Your task is to impliment a function solve to return solved array   *
  ***********************************************************************/
+
+var pzlary = [];
+
+
+
 function print2dAry(ary) {
     ary.forEach(a => {
         var st = "";
@@ -24,18 +29,6 @@ function get2dFromString(str) {
     return ary;
 }
 
-//var a = "3 1 6 5 7 8 4 9 2\n" +
-//        "5 0 9 1 3 0 7 6 8\n" +
-//        "4 8 7 6 2 9 5 3 1\n" +
-//        "2 6 3 4 1 5 9 8 7\n" +
-//        "9 7 4 0 6 3 0 2 5\n" +
-//        "8 0 1 7 9 2 6 4 3\n" +
-//        "1 3 0 9 4 7 2 5 6\n" +
-//        "6 9 2 3 5 1 8 7 4\n" +
-//        "7 4 5 2 8 6 3 1 0";
-
-
-
 
 function solve(a) {
 //_____________________________________________
@@ -45,7 +38,7 @@ function solve(a) {
 }
 
 function  setdata() {
-    document.getElementById('data').value = "1 5 0 0 3 0 0 6 2\n" +
+    var a = "1 5 0 0 3 0 0 6 2\n" +
             "0 0 2 1 0 8 3 9 0\n" +
             "9 3 0 6 7 0 0 1 0\n" +
             "0 2 7 4 0 1 0 0 6\n" +
@@ -54,21 +47,38 @@ function  setdata() {
             "2 0 9 5 1 0 0 0 3\n" +
             "0 0 5 8 0 3 6 0 9\n" +
             "4 8 0 0 9 0 1 7 0";
+    pzlary.push(a);
+
+    var a = "1 5 0 0 3 0 0 6 2\n" +
+            "0 0 2 1 0 8 3 9 0\n" +
+            "9 3 0 6 7 0 0 1 0\n" +
+            "0 2 7 4 0 1 0 0 6\n" +
+            "8 4 1 0 0 9 2 0 0\n" +
+            "0 0 0 0 2 5 8 4 1\n" +
+            "2 0 9 5 1 0 0 0 3\n" +
+            "0 0 5 8 0 3 6 0 9\n" +
+            "4 8 0 0 9 0 1 7 0";
+    pzlary.push(a);
+
+    var a = "3 1 6 5 7 8 4 9 2\n" +
+            "5 0 9 1 3 0 7 6 8\n" +
+            "4 8 7 6 2 9 5 3 1\n" +
+            "2 6 3 4 1 5 9 8 7\n" +
+            "9 7 4 0 6 3 0 2 5\n" +
+            "8 0 1 7 9 2 6 4 3\n" +
+            "1 3 0 9 4 7 2 5 6\n" +
+            "6 9 2 3 5 1 8 7 4\n" +
+            "7 4 5 2 8 6 3 1 0";
+    pzlary.push(a);
+
+
+    document.getElementById('data').value = pzlary.pop();
 }
 
 function main() {
-    var a = document.getElementById("data")
+    var a = document.getElementById("data");
     var ary = get2dFromString(a.value);
-    var aftrAry = null;
-    console.log("BEFORE");
-//    print2dAry(ary);
-    tableBuilder(ary)
-    var b4Time = performance.now();
-    aftrAry = solve(ary);
-    var aft6Time = performance.now();
-    console.log("AFTER ");
-    print2dAry(aftrAry);
-    console.log("Time Took : " + aft6Time - b4Time + " ms");
+    tableBuilder(ary);
 }
 
 function tableBuilder(ary) {
@@ -86,8 +96,7 @@ function tableBuilder(ary) {
         table += "</tr>";
     }
     table += "</table>";
-    console.log(table)
-    div.innerHTML = (table)
+    div.innerHTML = (table);
 }
 
 function getTableData() {
@@ -96,7 +105,7 @@ function getTableData() {
     var myTab = document.getElementById('table');
     for (i = 0; i < myTab.rows.length; i++) {
         var objCells = myTab.rows.item(i).cells;
-        var row = []
+        var row = [];
         for (var j = 0; j < objCells.length; j++) {
             row.push((objCells.item(j).innerHTML ? parseInt(objCells.item(j).innerHTML) : 0));
             innerHTML = (innerHTML ? innerHTML + ' ' : '') + (objCells.item(j).innerHTML ? objCells.item(j).innerHTML : 0);
@@ -109,6 +118,7 @@ function getTableData() {
 }
 
 function checkValid() {
+    var valid = true;
     var ary = getTableData();
     for (var i = 0; i < ary.length; i++) {
         for (var j = 0; j < ary[i].length; j++) {
@@ -116,16 +126,24 @@ function checkValid() {
                 setValidCellByIndex(i, j, true);
             } else {
                 setValidCellByIndex(i, j, false);
+                valid = false;
             }
         }
     }
     setTimeout("setAllValid()", 5000);
+    if (valid) {
+        alert("Congratulations get ready for the next round...! ");
+        document.getElementById('data').value = pzlary.pop();
+        var a = document.getElementById("data");
+        var ary = get2dFromString(a.value);
+        tableBuilder(ary);
+    }
 }
 
 function checkValidCell(x, y, ary) {
     var ele = ary[x][y];
     var row = ary[x];
-    var col = []
+    var col = [];
     var subary = getSubAryByIndex(x, y, ary);
     ary.forEach(row => col.push(row[y]));
     var isvalidrow = row.indexOf(ele) === row.lastIndexOf(ele);
