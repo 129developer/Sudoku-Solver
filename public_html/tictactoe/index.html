@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+    <head>
+        <style>
+            textarea {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                width: '326px';
+
+            }
+            body{
+                background-repeat: no-repeat;
+                background-size: cover;
+                text-align: center;
+                color:#87a1fd;    
+            }
+            checkbox{
+                color:red
+            }
+            label {
+                color:#6ebefb;
+                font-family: Consolas, Baskerville, 'Segoe UI', sans-serif;
+            }
+            input[type=checkbox]:hover {
+                box-shadow:0px 0px 10px #1300ff;
+            }
+
+            table td:hover {
+                background: rgba(05, 194, 176, 0.66);
+            }
+            table {
+                margin:1em auto;
+            }
+            td {
+                height:70px;
+                width:70px;
+
+                text-align:center;
+            }
+
+            td:nth-child(2n) {
+                border-right:solid ;
+            }
+            td:nth-child(1) {
+                border-right:solid ;
+            }
+
+
+            table td[valid=false] {
+                background:red !important;
+            }
+            tr:nth-child(1) td {
+                border-bottom:solid ;
+            }
+
+            tr:nth-child(1) td {
+                border-bottom:solid ;
+            }
+
+            tr:nth-child(2) td {
+                border-bottom:solid ;
+            }
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+        <script>
+            window.crr = 0;
+            function tick(a) {
+                if (!a.innerHTML) {
+                    if (window.crr === 0) {
+                        a.innerHTML = '<img src = "../images/cross.png" width="70px">';
+                        window.crr = 1;
+                    } else {
+                        a.innerHTML = '<img src = "../images/circle.png" width="70px">';
+                        window.crr = 0;
+                    }
+                }
+            }
+        </script>
+        <script src="../js/main.js" type="text/javascript" ></script>
+        <script src="../js/solution.js" type="text/javascript" ></script>
+        <title>Sudoku Solver</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body   background="../images/bg.jpg">
+        <h1><span style="color: #999999;"><em><strong>Tic-Tac-Toe</strong></em></span></h1>
+        
+        <div><input type="image" width='20%' height='20%' src='../images/reset.png' onclick="window.location = ''"></div>
+        <br>
+        <br>
+        <div id="tableSpace">
+            <table id="table">
+                <tr>
+                    <td width = "100" id="01" contenteditable="false" onClick="tick(this)"></td>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                </tr>
+                <tr>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                </tr>
+                <tr>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                    <td width = "100" contenteditable="false" onClick="tick(this)"></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

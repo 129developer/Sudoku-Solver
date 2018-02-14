@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<style>
+    textarea {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    
+        width: 100%;
+    }
+    body{
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    checkbox{
+    color:red
+    }
+    label {
+        color:#6ebefb;
+        font-family: Consolas, Baskerville, 'Segoe UI', sans-serif;
+    }
+    input[type=checkbox]:hover {
+        box-shadow:0px 0px 10px #1300ff;
+    }
+</style>
+<script>
+    function loadComponets(thisObj){
+       var chekedname=['Aby','Mukil','Sandeep','Midhun','Mohan','Sreejesh','Joshua'];
+          var unchekedname=['Albin','Ashwin'];
+          var string="",nameString="";
+    for(var index=0;index<chekedname.length;index++){
+    string+='<input type="checkbox" checked=true name="'+chekedname[index]+'" onclick="playerclick(this)" /><label>'+chekedname[index]+'</label>';
+    nameString+=chekedname[index]+"\n";
+    
+    }
+    string+="<br>";
+    for(var index=0;index<unchekedname.length;index++){
+    string+='<input type="checkbox" name="'+unchekedname[index]+'" onclick="playerclick(this)" /><label>'+unchekedname[index]+'</label>'
+    }
+    string+="<br>";
+    document.getElementById('palyernamecheckbox').innerHTML= string;
+    document.getElementById('names').value= nameString.trim();  
+       
+       }
+        function sort(){
+        var names = document.getElementById('names');
+        var namesAry = names.value.split('\n');
+        var teamA = [];
+        var teamB = [];
+        var added = [];
+        function addIN(ary){
+        var rnd = getRandomInt(0, namesAry.length-1);
+        	if(added.indexOf(rnd ) == -1){
+        		ary.push(namesAry[rnd]);
+        		added.push(rnd)
+        return true;
+        	}
+        return addIN(ary);
+        }
+        while(added.length < namesAry.length){
+        if(added.length<namesAry.length){
+           addIN(teamA);}
+           if(added.length<namesAry.length){
+        addIN(teamB);}
+        }
+        
+        document.getElementById('teamA').value = "TEAM A : "+(teamA);
+        document.getElementById('teamB').value = "TEAM B : "+(teamB);
+        }
+        
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function playerclick(element){
+        if(element.checked===true){
+              var names = document.getElementById('names').value
+              if(names.length===0){
+              names=[]
+              }else{
+               names=names.split('\n');
+              }
+              names.push(element.name);
+               var string="";
+               for(var index=0;index<names.length;index++){
+               string+=names[index]+"\n";
+               }
+            document.getElementById('names').value=string.trim();
+        }else{
+            var names = document.getElementById('names').value;
+         names=names.split('\n');
+         var string="";
+          for(var index=0;index<names.length;index++){
+           if(names[index]!==element.name){
+               string+=names[index]+"\n";
+           }
+          }
+            document.getElementById('names').value=string.trim();
+          
+         }
+         
+            
+        }
+</script>
+
+<body onload="loadComponets(this)" background="../images/bg.jpg">
+    <h1 style="text-align: center;"><span style="color: #95ffa8;"><strong>Numma Team</strong></span></h1>
+    <div id="palyernamecheckbox"></div>
+
+    <div><span style="color: #ff5151;"><b>Enter Names of players in each line</b></span></div>
+    <textarea id="names" cols="20" rows="10"></textarea>
+    <div><input type="button" value="Create Team" onclick="sort()" /></div>
+    <p><span style="color: #ff5151;"><b>Team A</b></span></p>
+    <p><textarea id="teamA" cols="30" rows="4"></textarea></p>
+    <p><span style="color: #ff5151;"><b>Team B</b></span></p>
+    <div><textarea id="teamB" cols="30" rows="4"></textarea></div>
+
+	<br>
+<br>
+
+	<div><input type="image" width='100%' height='200px' src='../images/play_sudoku.png' onclick="window.location = '../sudoku'"></div>
+</body>
+
+</html>
+
