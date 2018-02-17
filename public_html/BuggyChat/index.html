@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+    <head>
+        <title>Buggy Chat</title>
+        <style>
+            /*            .chatArea{
+                            overflow-y: auto;
+                            width: 90%;
+                            margin: 0px;
+                        }*/
+            .chaterName{
+                margin: 10px; 
+                width:50%;
+            }
+            .chatBox{
+                bottom: 0;
+                width:70%;
+                margin: 10px;
+                position: absolute;
+            }
+            .send{
+                bottom: 0;
+                right:0;
+                margin: 10px;
+                position: absolute;
+            }
+            #chatarea {
+                position: absolute;
+                top: 70px;
+                left: 10px;
+                right: 0;
+                bottom: 55px;
+                overflow-y: scroll;
+            }
+
+        </Style>
+        <script>
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            function getRandomColor() {
+                var a = "rgb(" + getRandomInt(100, 255) + "," + getRandomInt(100, 255) + "," + getRandomInt(100, 250) + ")";
+                return a;
+            }
+            function getEl(el) {
+                return document.getElementById(el);
+            }
+            function startchat() {
+                if (getEl('setname').value == "Start") {
+                    if (getEl('chatname').value) {
+                        getEl('chatname').disabled = true;
+                        getEl('message').disabled = false;
+                        getEl('send').disabled = false;
+                        getEl('setname').value = "Reset";
+                    }
+                } else {
+                    window.location = ""
+                }
+            }
+            function appendMessageWithName(name, msg) {
+                var objDiv = getEl('chatarea');
+                objDiv.innerHTML += '<font style="color:' + getRandomColor() + '">' + name + " : " + msg + "</font><br>";
+                objDiv.scrollTop = objDiv.scrollHeight;
+            }
+            function appendMessage(msg) {
+                var objDiv = getEl('chatarea');
+                objDiv.innerHTML += '<font color="green">' + msg + "<br>";
+                objDiv.scrollTop = objDiv.scrollHeight;
+            }
+            function appendMyMessage() {
+                var objDiv = getEl('chatarea');
+                objDiv.innerHTML += '<font style="color:#ff7878">' + getEl('chatname').value + " : " + getEl('message').value + "</font><br>";
+                objDiv.scrollTop = objDiv.scrollHeight;
+                getEl('message').value = "";
+            }
+
+        </script>
+
+    </head> 
+    <body style="background:url(https://pm1.narvii.com/6281/b81c006be94ab8c905936a66151fbc7e6abc9e0c_hq.jpg);background-size: cover; color:white;">
+        <b>Chat Name</b><input type="text" id="chatname" class=chaterName><input type="button" id="setname" value="Start" onclick="startchat()" >
+        <br>
+        <b>Messages</b>
+        <br>
+        <div id="chatarea">
+            <div id="chatarea" class=chatArea>
+            </div>
+        </div>
+        <div>
+            <input type="text" id="message" disabled="true"  class=chatBox ></textarea>
+            <input class=send disabled="true" type="image"  height="10%" src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Paper-Plane-512.png" id="send" value="Send" onclick="appendMyMessage()" >
+        </div>
+    </body>
+</html>
